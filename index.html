@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ficha de Referenciamento ao CREAS — Sumaré</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Arial,sans-serif;font-size:13px;background:#e8edf2;color:#1a1a1a;}
+header{background:#0b3d62;color:#fff;padding:0;}
+.header-top{display:flex;align-items:center;gap:16px;padding:12px 20px;}
+.header-top .brasao{width:52px;height:52px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;color:#0b3d62;font-weight:bold;text-align:center;flex-shrink:0;line-height:1.2;}
+.header-top .titles h1{font-size:13px;font-weight:700;letter-spacing:.5px;margin-bottom:2px;}
+.header-top .titles h2{font-size:11px;font-weight:400;opacity:.9;}
+.header-bar{background:#1a5f96;text-align:center;padding:6px 20px;}
+.header-bar .ficha-title{font-size:14px;font-weight:700;letter-spacing:2px;}
+.header-bar .ficha-sub{font-size:10px;opacity:.85;margin-top:1px;}
+.header-info{background:#f0f4f8;border-top:3px solid #0b3d62;padding:5px 20px;text-align:center;font-size:10px;color:#444;}
+.container{max-width:900px;margin:16px auto;padding:0 12px 60px;}
+.sigilo{background:#fff8e6;border:1px solid #e0a951;border-left:4px solid #e0a951;color:#7a4a05;padding:10px 14px;border-radius:4px;font-size:11px;margin-bottom:14px;}
+.card{background:#fff;border:1px solid #c0cdd8;border-radius:6px;margin-bottom:14px;overflow:hidden;}
+.sec-header{background:#0b3d62;color:#fff;padding:7px 12px;font-size:11px;font-weight:700;letter-spacing:.3px;}
+.sec-header.light{background:#1a5f96;}
+.sec-header.gray{background:#4a6275;font-size:10px;}
+.subsec{background:#dae6f0;color:#0b3d62;padding:5px 12px;font-size:10px;font-weight:700;border-bottom:1px solid #b8d0e8;}
+.card-body{padding:10px 12px;}
+.field-grid{display:grid;gap:8px;margin-bottom:8px;}
+.g2{grid-template-columns:1fr 1fr;}
+.g3{grid-template-columns:1fr 1fr 1fr;}
+.g4{grid-template-columns:1fr 1fr 1fr 1fr;}
+.g-auto{grid-template-columns:repeat(auto-fit,minmax(160px,1fr));}
+.field label{display:block;font-size:10px;font-weight:700;color:#0b3d62;margin-bottom:3px;}
+.field input[type=text],.field input[type=date],.field input[type=email],.field input[type=tel],.field select,.field textarea{width:100%;padding:5px 7px;border:1px solid #b0bec8;border-radius:3px;font-size:12px;font-family:Arial,sans-serif;background:#fafcfe;}
+.field textarea{min-height:50px;resize:vertical;}
+.field small{font-size:10px;color:#666;display:block;margin-top:2px;}
+.radio-group{display:flex;flex-wrap:wrap;gap:10px;margin-top:3px;}
+.radio-group label,.check-inline label{display:flex;align-items:center;gap:4px;font-size:11px;font-weight:400;color:#1a1a1a;cursor:pointer;}
+.radio-group input,.check-inline input{width:auto;}
+.check-grid{display:grid;gap:4px 10px;margin-top:4px;}
+.cg2{grid-template-columns:1fr 1fr;}
+.cg3{grid-template-columns:1fr 1fr 1fr;}
+.cg4{grid-template-columns:1fr 1fr 1fr 1fr;}
+.check-grid label{display:flex;align-items:flex-start;gap:5px;font-size:11px;font-weight:400;cursor:pointer;}
+.check-grid input{width:auto;margin-top:2px;flex-shrink:0;}
+.risco-cat{margin-bottom:8px;}
+.risco-cat-title{font-size:10px;font-weight:700;color:#1a5f96;border-bottom:1px solid #dae6f0;padding-bottom:3px;margin-bottom:5px;}
+table.composicao{width:100%;border-collapse:collapse;font-size:11px;}
+table.composicao th{background:#dae6f0;color:#0b3d62;padding:5px 7px;border:1px solid #b8d0e8;font-weight:700;text-align:left;}
+table.composicao td{border:1px solid #d0dce8;padding:3px;}
+table.composicao td input{border:none;background:transparent;width:100%;font-size:11px;padding:2px;}
+.victim-block{background:#fff;border:2px solid #0b3d62;border-radius:6px;margin-bottom:16px;overflow:hidden;}
+.victim-top{background:#0b3d62;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:8px 12px;}
+.victim-top h3{font-size:12px;margin:0;}
+.remove-btn{background:#c0392b;border:none;color:#fff;padding:3px 10px;border-radius:3px;cursor:pointer;font-size:11px;}
+.victim-body{padding:10px 12px;}
+.tipo-fieldset{display:none;}
+.tipo-fieldset.ativo{display:block;}
+.actions-bar{background:#f5f8fb;border-top:1px solid #dae6f0;padding:10px 12px;}
+.btn-add-vitima{display:block;margin:0 auto 16px;background:#1a5f96;color:#fff;border:none;padding:10px 24px;border-radius:4px;cursor:pointer;font-size:13px;font-weight:700;}
+.btn-add-vitima:hover{background:#0b3d62;}
+.btn-add-row{background:#fff;border:1px solid #1a5f96;color:#1a5f96;padding:4px 10px;border-radius:3px;cursor:pointer;font-size:11px;margin-top:5px;}
+.submit-btn{display:block;margin:0 auto;background:#0b3d62;color:#fff;border:none;padding:13px 40px;border-radius:5px;font-size:14px;font-weight:700;cursor:pointer;}
+.submit-btn:hover{background:#1a5f96;}
+#statusMsg{text-align:center;margin-top:12px;font-size:12px;}
+.hr-sec{border:none;border-top:2px solid #dae6f0;margin:10px 0;}
+.inline-row{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;font-size:11px;}
+.inline-row span{font-weight:700;color:#0b3d62;}
+
+.obrigatorio::after{content:" *";color:#c0392b;font-weight:700;}
+#telaEnvio{display:none;max-width:620px;margin:60px auto;background:#fff;border-radius:10px;padding:40px;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,0.12);}
+#telaEnvio h2{color:#0b3d62;font-size:22px;margin-bottom:8px;}
+#telaEnvio p{color:#555;font-size:13px;margin-bottom:6px;line-height:1.6;}
+#telaEnvio .resumo{background:#f0f6fb;border:1px solid #c8dff0;border-radius:6px;padding:14px 18px;text-align:left;margin:16px 0;font-size:12px;color:#333;line-height:1.9;}
+#telaEnvio .resumo strong{color:#0b3d62;}
+.btn-nova-ficha{background:#0b3d62;color:#fff;border:none;padding:13px 32px;border-radius:5px;font-size:14px;font-weight:700;cursor:pointer;margin-top:10px;}
+.btn-nova-ficha:hover{background:#1a5f96;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-top">
+    <div class="brasao">PMSumaré</div>
+    <div class="titles">
+      <h1>Prefeitura Municipal de Sumaré</h1>
+      <h2>Secretaria Municipal de Inclusão, Assistência e Desenvolvimento Social</h2>
+    </div>
+  </div>
+  <div class="header-bar">
+    <div class="ficha-title">F I C H A &nbsp; D E &nbsp; R E F E R E N C I A M E N T O &nbsp; A O &nbsp; C R E A S</div>
+    <div class="ficha-sub">Centro de Referência Especializado da Assistência Social</div>
+  </div>
+  <div class="header-info">
+    Avenida Brasil, 1.111 – Jd. Nova Veneza – 13.177-310 – Sumaré/SP &nbsp;|&nbsp; (19) 3399-5900 &nbsp;|&nbsp; creas@sumare.sp.gov.br &nbsp;|&nbsp; gerente.creas@sumare.sp.gov.br
+  </div>
+</header>
+
+<div id="telaEnvio">
+  <div style="font-size:60px;margin-bottom:14px;">&#x2705;</div>
+  <h2>Ficha enviada com sucesso!</h2>
+  <p>A ficha foi registrada e encaminhada ao CREAS.</p>
+  <div class="resumo" id="resumoEnvio"></div>
+  <p style="font-size:11px;color:#888;">Uma c&oacute;pia em PDF foi enviada para o e-mail do t&eacute;cnico e para o CREAS.</p>
+  <button class="btn-nova-ficha" onclick="novaPagina()">Preencher Nova Ficha</button>
+</div>
+<div class="container">
+
+<div class="sigilo">&#9888; <strong>Documento sigiloso (LGPD — Lei n.º 13.709/2018).</strong> Informações de uso exclusivo para fins de proteção social.</div>
+
+<form id="creasForm">
+
+<!-- REMETENTE -->
+<div class="card">
+  <div class="sec-header">Identificação do Remetente</div>
+  <div class="card-body">
+    <div class="field-grid g3">
+      <div class="field"><label class="obrigatorio">Data do Preenchimento</label><input type="date" name="data_preenchimento" required></div>
+      <div class="field"><label class="obrigatorio">Equipamento / Serviço</label><input type="text" name="equipamento" required></div>
+      <div class="field"><label class="obrigatorio">Técnico Responsável</label><input type="text" name="tecnico_responsavel" required></div>
+      <div class="field"><label>Telefone</label><input type="tel" name="remetente_telefone"></div>
+      <div class="field"><label class="obrigatorio">E-mail do Técnico</label><input type="email" name="remetente_email" required></div>
+    </div>
+  </div>
+</div>
+
+<!-- SEÇÃO A -->
+<div class="card">
+  <div class="sec-header">A. Identificação da Referência Familiar</div>
+  <div class="card-body">
+    <div class="field-grid g-auto">
+      <div class="field"><label class="obrigatorio">Nome</label><input type="text" name="ref_nome" required></div>
+      <div class="field"><label>Data de Nascimento</label><input type="date" name="ref_dn"></div>
+      <div class="field"><label>CPF</label><input type="text" name="ref_cpf"></div>
+    </div>
+    <div class="field-grid g3">
+      <div class="field"><label>Gênero</label><input type="text" name="ref_genero"></div>
+      <div class="field"><label>Raça</label><input type="text" name="ref_raca"></div>
+      <div class="field"><label>Estado Civil</label><input type="text" name="ref_estado_civil"></div>
+    </div>
+    <div class="subsec" style="margin:8px -12px;padding:5px 12px;">Endereço</div>
+    <div class="field-grid g-auto" style="margin-top:8px;">
+      <div class="field"><label>Logradouro</label><input type="text" name="end_logradouro"></div>
+      <div class="field" style="max-width:100px;"><label>Nº</label><input type="text" name="end_numero"></div>
+      <div class="field"><label>Complemento</label><input type="text" name="end_complemento"></div>
+      <div class="field"><label>Condomínio</label><input type="text" name="end_condominio"></div>
+    </div>
+    <div class="field-grid g3">
+      <div class="field"><label>Bairro</label><input type="text" name="end_bairro"></div>
+      <div class="field"><label>CEP</label><input type="text" name="end_cep"></div>
+      <div class="field"><label>Telefones</label><input type="text" name="ref_telefones"></div>
+    </div>
+    <div class="field"><label>Observações</label><textarea name="ref_observacoes"></textarea></div>
+  </div>
+</div>
+
+<!-- COMPOSIÇÃO FAMILIAR -->
+<div class="card">
+  <div class="sec-header light">Composição Familiar | Corresidentes | (Parentesco em relação à Referência Familiar)</div>
+  <div class="card-body">
+    <table class="composicao" id="tblComp">
+      <thead><tr><th>Parentesco</th><th>Nome Completo</th><th>DN</th><th>Idade</th><th></th></tr></thead>
+      <tbody>
+        <tr>
+          <td><input type="text" name="comp_parentesco[]"></td>
+          <td><input type="text" name="comp_nome[]"></td>
+          <td><input type="date" name="comp_dn[]"></td>
+          <td><input type="text" name="comp_idade[]" style="width:60px;"></td>
+          <td><button type="button" class="btn-add-row" onclick="this.closest('tr').remove()" style="color:#c0392b;border-color:#c0392b;">✕</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <button type="button" class="btn-add-row" onclick="addLinhaComp()">+ Corresidente</button>
+  </div>
+
+  <!-- Documentos -->
+  <div class="subsec">Documentos Anexados</div>
+  <div class="card-body">
+    <div class="inline-row">
+      <label><input type="checkbox" name="documentos[]" value="Relatório Multiprofissional"> Relatório Multiprofissional</label>
+      <label><input type="checkbox" name="documentos[]" value="Boletim de Ocorrência"> Boletim de Ocorrência</label>
+      <label><input type="checkbox" name="documentos[]" value="Relatório Médico"> Relatório Médico</label>
+    </div>
+    <div class="field" style="margin-top:6px;"><label>Outros</label><input type="text" name="documentos_outros"></div>
+    <div class="field" style="margin-top:8px;">
+      <label>Arquivos para Anexar</label>
+      <input type="file" id="arquivosAnexos" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+      <small>PDF, Word ou imagens. Máx. 5 MB por arquivo.</small>
+    </div>
+  </div>
+</div>
+
+<!-- RISCOS -->
+<div class="card">
+  <div class="sec-header">Riscos e Vulnerabilidades Sociais</div>
+  <div class="card-body">
+    <div class="field-grid g2">
+      <div>
+        <div class="risco-cat"><div class="risco-cat-title">Educação</div>
+          <div class="check-grid cg1">
+            <label><input type="checkbox" name="riscos[]" value="Baixa escolaridade dos responsáveis familiares"> Baixa escolaridade dos responsáveis familiares</label>
+            <label><input type="checkbox" name="riscos[]" value="Presença de adulto sem alfabetização"> Presença de adulto sem alfabetização</label>
+            <label><input type="checkbox" name="riscos[]" value="Criança/adolescente com 2 anos de atraso escolar"> Criança/adolescente com 2 anos de atraso escolar</label>
+            <label><input type="checkbox" name="riscos[]" value="Evasão escolar de criança/adolescente"> Evasão escolar de criança/adolescente</label>
+          </div>
+        </div>
+        <div class="risco-cat"><div class="risco-cat-title">Habitação e Território</div>
+          <div class="check-grid cg1">
+            <label><input type="checkbox" name="riscos[]" value="Moradia improvisada"> Moradia improvisada</label>
+            <label><input type="checkbox" name="riscos[]" value="Tráfico de drogas ostensivo e naturalizado"> Tráfico de drogas ostensivo e naturalizado</label>
+            <label><input type="checkbox" name="riscos[]" value="Presença de bares frequentados por crianças/adolescentes"> Presença de bares frequentados por crianças/adolescentes</label>
+            <label><input type="checkbox" name="riscos[]" value="Sem acesso à água"> Sem acesso à água</label>
+            <label><input type="checkbox" name="riscos[]" value="Sem acesso à energia elétrica"> Sem acesso à energia elétrica</label>
+            <label><input type="checkbox" name="riscos[]" value="Envolvimento de familiar com o crime"> Envolvimento de familiar com o crime</label>
+          </div>
+        </div>
+        <div class="risco-cat"><div class="risco-cat-title">Saúde e Saúde Mental</div>
+          <div class="check-grid cg1">
+            <label><input type="checkbox" name="riscos[]" value="Presença de adolescente gestante"> Presença de adolescente gestante</label>
+            <label><input type="checkbox" name="riscos[]" value="Presença de pessoa com deficiência"> Presença de pessoa com deficiência</label>
+            <label><input type="checkbox" name="riscos[]" value="Presença de pessoa com doença grave"> Presença de pessoa com doença grave</label>
+            <label><input type="checkbox" name="riscos[]" value="Presença de pessoa com doença mental grave"> Presença de pessoa com doença mental grave</label>
+            <label><input type="checkbox" name="riscos[]" value="Presença de pessoa com sexualidade exacerbada"> Presença de pessoa com sexualidade exacerbada</label>
+            <label><input type="checkbox" name="riscos[]" value="Presença de pessoa com agressividade exacerbada"> Presença de pessoa com agressividade exacerbada</label>
+            <label><input type="checkbox" name="riscos[]" value="Presença de usuário de SPA na residência"> Presença de usuário de SPA na residência</label>
+            <label><input type="checkbox" name="riscos[]" value="Criança/adolescente em uso de SPA"> Criança/adolescente em uso de SPA</label>
+            <label><input type="checkbox" name="riscos[]" value="Morte ou perda significativa recente"> Morte ou perda significativa recente</label>
+            <label><input type="checkbox" name="riscos[]" value="Histórico de suicídio ou tentativa na família"> Histórico de suicídio ou tentativa na família</label>
+            <label><input type="checkbox" name="riscos[]" value="Falta de acesso à tecnologia assistiva"> Falta de acesso à tecnologia assistiva</label>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="risco-cat"><div class="risco-cat-title">Relações Vinculares</div>
+          <div class="check-grid cg1">
+            <label><input type="checkbox" name="riscos[]" value="Família monoparental"> Família monoparental</label>
+            <label><input type="checkbox" name="riscos[]" value="Função protetiva precária dos responsáveis"> Função protetiva precária dos responsáveis</label>
+            <label><input type="checkbox" name="riscos[]" value="Histórico de repetidas separações e reconciliações entre o casal"> Histórico de repetidas separações e reconciliações entre o casal</label>
+            <label><input type="checkbox" name="riscos[]" value="Existência de conflitos familiares intensos"> Existência de conflitos familiares intensos</label>
+            <label><input type="checkbox" name="riscos[]" value="Vínculos familiares rompidos ou fragilizados"> Vínculos familiares rompidos ou fragilizados</label>
+            <label><input type="checkbox" name="riscos[]" value="Relações de poder rígidas e desiguais no contexto familiar"> Relações de poder rígidas e desiguais no contexto familiar</label>
+            <label><input type="checkbox" name="riscos[]" value="Família constituída por filhos de diferentes relacionamentos dos genitores"> Família constituída por filhos de diferentes relacionamentos dos genitores</label>
+            <label><input type="checkbox" name="riscos[]" value="Isolamento ou exclusão social da pessoa vitimada"> Isolamento ou exclusão social da pessoa vitimada</label>
+            <label><input type="checkbox" name="riscos[]" value="Não aceitação da identidade de gênero e/ou orientação sexual"> Não aceitação da identidade de gênero e/ou orientação sexual</label>
+            <label><input type="checkbox" name="riscos[]" value="Sobrecarga/esgotamento de único cuidador"> Sobrecarga/esgotamento de único cuidador</label>
+            <label><input type="checkbox" name="riscos[]" value="Histórico de violações de direitos na família"> Histórico de violações de direitos na família</label>
+            <label><input type="checkbox" name="riscos[]" value="Familiar egresso do sistema prisional ou cumprindo pena"> Familiar egresso do sistema prisional ou cumprindo pena</label>
+            <label><input type="checkbox" name="riscos[]" value="Presença de armas de fogo na residência"> Presença de armas de fogo na residência</label>
+            <label><input type="checkbox" name="riscos[]" value="Padrão absenteísta da família com os serviços da rede"> Padrão absenteísta da família com os serviços da rede</label>
+            <label><input type="checkbox" name="riscos[]" value="Dificuldade ou falta de acesso a serviços essenciais"> Dificuldade ou falta de acesso a serviços essenciais</label>
+          </div>
+        </div>
+        <div class="risco-cat"><div class="risco-cat-title">Trabalho e Renda</div>
+          <div class="check-grid cg1">
+            <label><input type="checkbox" name="riscos[]" value="Desemprego dos responsáveis familiares"> Desemprego dos responsáveis familiares</label>
+            <label><input type="checkbox" name="riscos[]" value="Histórico de mendicância dos responsáveis"> Histórico de mendicância dos responsáveis</label>
+            <label><input type="checkbox" name="riscos[]" value="Histórico de mendicância da criança/adolescente"> Histórico de mendicância da criança/adolescente</label>
+            <label><input type="checkbox" name="riscos[]" value="Responsável familiar profissional do sexo"> Responsável familiar profissional do sexo</label>
+            <label><input type="checkbox" name="riscos[]" value="Renda familiar insuficiente para garantir a subsistência"> Renda familiar insuficiente para garantir a subsistência</label>
+            <label><input type="checkbox" name="riscos[]" value="BPC como única renda familiar"> BPC como única renda familiar</label>
+            <label><input type="checkbox" name="riscos[]" value="Bolsa família bloqueado"> Bolsa família bloqueado</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VÍTIMAS -->
+<div class="sec-header" style="border-radius:6px 6px 0 0;padding:8px 12px;margin-bottom:0;">Identificação das Vítimas (Seções B a G)</div>
+<div style="background:#e8f1f8;border:1px solid #b8d0e8;border-top:none;border-radius:0 0 6px 6px;padding:8px 12px;margin-bottom:12px;font-size:11px;color:#0b3d62;">
+  Adicione um bloco para cada pessoa vitimada e selecione o segmento correspondente.
+</div>
+
+<div id="victimsContainer"></div>
+<button type="button" class="btn-add-vitima" onclick="addVictim()">+ Adicionar Vítima</button>
+
+<!-- RELATO FINAL -->
+<div class="card">
+  <div class="sec-header">H. Relato Sintético e Objetivo da Situação</div>
+  <div class="card-body">
+    <div class="field"><textarea name="relato_sintetico" rows="5" placeholder="Relato sintético e objetivo da situação..."></textarea></div>
+    <div style="margin-top:8px;">
+      <label style="display:flex;align-items:center;gap:6px;font-size:11px;">
+        <input type="checkbox" name="ciente_encaminhamento" style="width:auto;">
+        A pessoa referenciada foi informada sobre este encaminhamento e está ciente dos próximos passos.
+      </label>
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center;margin:20px 0;">
+  <button type="submit" class="submit-btn">Enviar Ficha</button>
+  <div id="statusMsg"></div>
+</div>
+
+</form>
+</div>
+
+<script>
+let victimCount = 0;
+
+function addLinhaComp(){
+  const tbody = document.querySelector('#tblComp tbody');
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td><input type="text" name="comp_parentesco[]"></td><td><input type="text" name="comp_nome[]"></td><td><input type="date" name="comp_dn[]"></td><td><input type="text" name="comp_idade[]" style="width:60px;"></td><td><button type="button" class="btn-add-row" onclick="this.closest('tr').remove()" style="color:#c0392b;border-color:#c0392b;">✕</button></td>`;
+  tbody.appendChild(tr);
+}
+
+const PCD_OPTS = ['Auditiva','Autismo','Física','Intelectual','Visual','Transtorno/Doença Mental','Em investigação','Suspeita'];
+
+function pcdHTML(p){
+  return `<div class="subsec">Pessoa com Deficiência</div><div class="card-body"><div class="check-grid cg4">${PCD_OPTS.map(o=>`<label><input type="checkbox" name="${p}_pcd[]" value="${o}"> ${o}</label>`).join('')}</div></div>`;
+}
+
+function violHTML(p, opts){
+  return opts.map(o=>`<label><input type="checkbox" name="${p}_violacoes[]" value="${o}"> ${o}</label>`).join('');
+}
+
+function acoesHTML(p, opts, pergunta){
+  const checks = opts.map(o=>`<label><input type="checkbox" name="${p}_acoes[]" value="${o}"> ${o}</label>`).join('');
+  const perg = pergunta ? `<div class="field" style="margin-bottom:6px;"><label>${pergunta}</label><div class="radio-group"><label><input type="radio" name="${p}_acoes_aceita" value="Não"> Não</label><label><input type="radio" name="${p}_acoes_aceita" value="Sim"> Sim, motivo: <input type="text" name="${p}_acoes_motivo" style="width:200px;"></label></div></div>` : '';
+  return `<div class="subsec">Ações Realizadas</div><div class="card-body">${perg}<div class="check-grid cg3">${checks}</div><div class="field" style="margin-top:6px;"><label>Observações</label><textarea name="${p}_acoes_obs"></textarea></div></div>`;
+}
+
+function autorHTML(p, numero){
+  const suf = numero ? '_'+numero : '';
+  return `<div class="subsec">Suposto Autor das Violações de Direitos${numero?' '+numero:''}</div><div class="card-body">
+    <div class="radio-group" style="margin-bottom:6px;">
+      <label><input type="radio" name="${p}_autor${suf}_tipo" value="Desconhecido"> Desconhecido</label>
+      <label><input type="radio" name="${p}_autor${suf}_tipo" value="Familiar"> Familiar, parentesco: <input type="text" name="${p}_autor${suf}_parentesco" style="width:120px;"></label>
+      <label><input type="radio" name="${p}_autor${suf}_tipo" value="Conhecido"> Conhecido, relação: <input type="text" name="${p}_autor${suf}_relacao" style="width:120px;"></label>
+    </div>
+    <div class="field-grid g3">
+      <div class="field"><label>Nome</label><input type="text" name="${p}_autor${suf}_nome"></div>
+      <div class="field"><label>Mantém contato com a vítima?</label><div class="radio-group"><label><input type="radio" name="${p}_autor${suf}_contato" value="Não"> Não</label><label><input type="radio" name="${p}_autor${suf}_contato" value="Sim"> Sim</label></div></div>
+      <div class="field"><label>Idade suposta</label><input type="text" name="${p}_autor${suf}_idade"></div>
+    </div>
+    <div class="field"><label>Faz uso de SPA?</label><div class="check-grid cg3"><label><input type="checkbox" name="${p}_autor${suf}_spa[]" value="Álcool"> Álcool</label><label><input type="checkbox" name="${p}_autor${suf}_spa[]" value="Crack"> Crack</label><label><input type="checkbox" name="${p}_autor${suf}_spa[]" value="Outras drogas ilícitas"> Outras drogas ilícitas</label></div></div>
+    <div class="field"><label>Observações</label><textarea name="${p}_autor${suf}_obs"></textarea></div>
+  </div>`;
+}
+
+function rendaHTML(p){
+  const fontes = ['Aposentadoria','BPC Idoso','BPC PcD','Pensão por Morte','Programa Bolsa Família','Auxílio Aluguel','Seguro-Desemprego','CLT','Trabalho Informal'];
+  return `<div class="subsec">Renda</div><div class="card-body">
+    <div class="field"><label>Fontes de Renda</label><div class="check-grid cg3">${fontes.map(f=>`<label><input type="checkbox" name="${p}_renda[]" value="${f}"> ${f}</label>`).join('')}</div></div>
+    <div class="field-grid g2" style="margin-top:6px;">
+      <div class="field"><label>Renda Familiar Bruta</label><input type="text" name="${p}_renda_bruta"></div>
+      <div class="field"><label>Renda comprometida com empréstimos?</label><div class="radio-group"><label><input type="radio" name="${p}_renda_emp" value="Não"> Não</label><label><input type="radio" name="${p}_renda_emp" value="Sim"> Sim</label></div></div>
+      <div class="field"><label>Renda Mensal Líquida</label><input type="text" name="${p}_renda_liquida"></div>
+      <div class="field"><label>Quem administra a renda</label><div class="radio-group"><label><input type="radio" name="${p}_renda_adm" value="A própria"> A própria</label><label><input type="radio" name="${p}_renda_adm" value="Outros"> Outros, quem: <input type="text" name="${p}_renda_adm_quem" style="width:120px;"></label></div></div>
+    </div>
+  </div>`;
+}
+
+function redeHTML(p){
+  return `<div class="subsec">Rede de Apoio Familiar e/ou Comunitária</div><div class="card-body">
+    <div class="field"><label>A pessoa tem a quem recorrer quando necessita de ajuda?</label><div class="radio-group"><label><input type="radio" name="${p}_rede_tem" value="Não"> Não</label><label><input type="radio" name="${p}_rede_tem" value="Sim"> Sim, quem: <input type="text" name="${p}_rede_quem" style="width:180px;"></label></div></div>
+    <table class="composicao" style="margin-top:6px;" id="${p}_rede_tbl">
+      <thead><tr><th>Relação</th><th>Nome Completo</th><th>Telefone</th><th></th></tr></thead>
+      <tbody><tr><td><input type="text" name="${p}_rede_relacao[]"></td><td><input type="text" name="${p}_rede_nome[]"></td><td><input type="text" name="${p}_rede_tel[]"></td><td><button type="button" class="btn-add-row" onclick="this.closest('tr').remove()" style="color:#c0392b;border-color:#c0392b;">✕</button></td></tr></tbody>
+    </table>
+    <button type="button" class="btn-add-row" onclick="addRedeRow('${p}')">+ Contato</button>
+  </div>`;
+}
+
+function addRedeRow(p){
+  const tbody = document.querySelector('#'+p+'_rede_tbl tbody');
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td><input type="text" name="${p}_rede_relacao[]"></td><td><input type="text" name="${p}_rede_nome[]"></td><td><input type="text" name="${p}_rede_tel[]"></td><td><button type="button" class="btn-add-row" onclick="this.closest('tr').remove()" style="color:#c0392b;border-color:#c0392b;">✕</button></td>`;
+  tbody.appendChild(tr);
+}
+
+// ─── Templates por segmento ───────────────────
+
+function blockCrianca(p){
+  const viol = ['Abandono','Abuso Sexual por importunação','Abuso Sexual com contato de risco','Discriminação por Orientação Sexual','Discriminação Racial','Discriminação Religiosa','Exploração Sexual','Negligência','Situação de Desabrigo','Situação de Rua','Tráfico de Seres Humanos','Trabalho Infantil','Violência Física','Violência Moral','Violência Patrimonial','Violência Psicológica','Conflito com a lei','Testemunha de Violência Doméstica'];
+  const acoes = ['Orientação sobre Boletim de Ocorrência','SAMU foi acionado','Polícia foi acionada','B.O. Registrado','Defensoria Pública','CAPS-ij','CAPS-AD','Encaminhada à UPA','Encaminhada à DDM','Visita Domiciliar'];
+  return `
+    <div data-tipo="Crianca" class="tipo-fieldset">
+      <div class="card-body">
+        <div class="field-grid g-auto">
+          <div class="field"><label>Nome</label><input type="text" name="${p}_nome"></div>
+          <div class="field"><label>Data de Nascimento</label><input type="date" name="${p}_dn"></div>
+          <div class="field"><label>CPF</label><input type="text" name="${p}_cpf"></div>
+        </div>
+        <div class="field-grid g2">
+          <div class="field"><label>Gênero</label><input type="text" name="${p}_genero"></div>
+          <div class="field"><label>Raça</label><input type="text" name="${p}_raca"></div>
+        </div>
+      </div>
+      ${pcdHTML(p)}
+      <div class="card-body">
+        <div class="field-grid g2">
+          <div class="field"><label>Hipóteses Diagnósticas / CID</label><textarea name="${p}_cid" rows="2"></textarea></div>
+          <div class="field"><label>Medicamentos Utilizados</label><textarea name="${p}_med" rows="2"></textarea></div>
+        </div>
+        <div class="field"><label>Faz uso de</label><div class="check-grid cg3"><label><input type="checkbox" name="${p}_uso[]" value="Cigarro"> Cigarro</label><label><input type="checkbox" name="${p}_uso[]" value="Álcool"> Álcool</label><label><input type="checkbox" name="${p}_uso[]" value="Outras substâncias"> Outras substâncias, quais: <input type="text" name="${p}_uso_quais" style="width:100px;"></label></div></div>
+      </div>
+      <div class="subsec">Educação</div>
+      <div class="card-body">
+        <div class="field-grid g3">
+          <div class="field"><label>Escola</label><input type="text" name="${p}_escola"></div>
+          <div class="field"><label>Série / Ano Escolar</label><input type="text" name="${p}_serie"></div>
+          <div class="field"><label>Frequência</label><div class="radio-group"><label><input type="radio" name="${p}_freq" value="Regular"> Regular</label><label><input type="radio" name="${p}_freq" value="Irregular"> Irregular</label><label><input type="radio" name="${p}_freq" value="Evadido"> Evadido</label></div></div>
+        </div>
+      </div>
+      <div class="subsec">Violações de Direitos</div>
+      <div class="card-body">
+        <div class="field-grid g2" style="margin-bottom:6px;">
+          <div class="field"><label>Confirmadas e reconhecidas pela família</label><div class="radio-group"><label><input type="radio" name="${p}_viol_fam" value="Sim"> Sim</label><label><input type="radio" name="${p}_viol_fam" value="Não"> Não</label><label><input type="radio" name="${p}_viol_fam" value="Não se aplica"> Não se aplica</label></div></div>
+          <div class="field"><label>Confirmadas e reconhecidas pela pessoa vitimada</label><div class="radio-group"><label><input type="radio" name="${p}_viol_vit" value="Sim"> Sim</label><label><input type="radio" name="${p}_viol_vit" value="Não"> Não</label><label><input type="radio" name="${p}_viol_vit" value="Não se aplica"> Não se aplica</label></div></div>
+        </div>
+        <div class="check-grid cg3">${violHTML(p,viol)}</div>
+        <div class="field-grid g2" style="margin-top:8px;">
+          <div class="field"><label>Existem outras pessoas vitimadas na residência?</label><div class="radio-group"><label><input type="radio" name="${p}_outras_vit" value="Não"> Não</label><label><input type="radio" name="${p}_outras_vit" value="Sim"> Sim, quantas: <input type="text" name="${p}_outras_vit_qtd" style="width:60px;"></label></div></div>
+          <div class="field"><label>Recorrência</label><div class="radio-group"><label><input type="radio" name="${p}_recorr" value="Episódica"> Episódica</label><label><input type="radio" name="${p}_recorr" value="Recorrente"> Recorrente</label></div></div>
+          <div class="field"><label>Quando iniciou</label><input type="text" name="${p}_viol_inicio"></div>
+          <div class="field"><label>Última ocorrência</label><input type="text" name="${p}_viol_ultima"></div>
+        </div>
+      </div>
+      ${autorHTML(p,1)}
+      ${autorHTML(p,2)}
+      <div class="subsec">Ações Realizadas</div>
+      <div class="card-body">
+        <div class="field-grid g2" style="margin-bottom:6px;">
+          <div class="field"><label>O Conselho Tutelar já foi acionado?</label><div class="radio-group"><label><input type="radio" name="${p}_ct_acionado" value="Não"> Não</label><label><input type="radio" name="${p}_ct_acionado" value="Sim"> Sim</label></div></div>
+          <div class="field"><label>O Conselho Tutelar já foi notificado?</label><div class="radio-group"><label><input type="radio" name="${p}_ct_notif" value="Não"> Não</label><label><input type="radio" name="${p}_ct_notif" value="Sim"> Sim</label></div></div>
+          <div class="field"><label>A família foi informada?</label><div class="radio-group"><label><input type="radio" name="${p}_fam_inf" value="Não"> Não</label><label><input type="radio" name="${p}_fam_inf" value="Sim"> Sim</label></div></div>
+          <div class="field"><label>Reação da Família</label><div class="radio-group"><label><input type="radio" name="${p}_reacao" value="Positiva"> Positiva</label><label><input type="radio" name="${p}_reacao" value="Negativa"> Negativa</label><label><input type="radio" name="${p}_reacao" value="Indiferente"> Indiferente</label></div></div>
+        </div>
+        <div class="field"><label>Observações</label><textarea name="${p}_acoes_obs_ct"></textarea></div>
+        <div class="check-grid cg3" style="margin-top:6px;">${acoes.map(o=>`<label><input type="checkbox" name="${p}_acoes[]" value="${o}"> ${o}</label>`).join('')}</div>
+      </div>
+    </div>`;
+}
+
+function blockIdoso(p){
+  const viol = ['Abandono','Abuso Sexual','Autonegligência','Discriminação por Orientação Sexual','Discriminação Racial','Discriminação Religiosa','Exploração Sexual','Negligência','Situação de Desabrigo','Situação de Rua','Tráfico de Seres Humanos','Violência Física','Violência Moral','Violência Patrimonial','Violência Psicológica'];
+  const acoes = ['Orientação sobre Boletim de Ocorrência','SAMU foi acionado','Polícia foi acionada','B.O. Registrado','Defensoria Pública','CAPS','CAPS-AD','Encaminhada à UPA','Medida Protetiva Solicitada','Visita Domiciliar'];
+  return `
+    <div data-tipo="Idoso" class="tipo-fieldset">
+      <div class="card-body">
+        <div class="field-grid g-auto">
+          <div class="field"><label>Nome</label><input type="text" name="${p}_nome"></div>
+          <div class="field"><label>Data de Nascimento</label><input type="date" name="${p}_dn"></div>
+          <div class="field"><label>CPF</label><input type="text" name="${p}_cpf"></div>
+        </div>
+        <div class="field-grid g3">
+          <div class="field"><label>Gênero</label><input type="text" name="${p}_genero"></div>
+          <div class="field"><label>Raça</label><input type="text" name="${p}_raca"></div>
+          <div class="field"><label>Estado Civil</label><input type="text" name="${p}_estado_civil"></div>
+        </div>
+      </div>
+      ${pcdHTML(p)}
+      <div class="card-body">
+        <div class="field-grid g2">
+          <div class="field"><label>Possui curador?</label><div class="radio-group"><label><input type="radio" name="${p}_curador" value="Não"> Não</label><label><input type="radio" name="${p}_curador" value="Sim"> Sim, quem: <input type="text" name="${p}_curador_quem" style="width:140px;"></label></div></div>
+          <div class="field"><label>Escolaridade</label><input type="text" name="${p}_escolaridade"></div>
+          <div class="field"><label>Possui filhos?</label><div class="radio-group"><label><input type="radio" name="${p}_filhos" value="Não"> Não</label><label><input type="radio" name="${p}_filhos" value="Sim"> Sim, quantos: <input type="text" name="${p}_filhos_qtd" style="width:60px;"></label></div></div>
+        </div>
+      </div>
+      <div class="subsec">Saúde</div>
+      <div class="card-body">
+        <div class="field"><label>Doença crônica</label><div class="check-grid cg4"><label><input type="checkbox" name="${p}_doenca[]" value="Hipertensão"> Hipertensão</label><label><input type="checkbox" name="${p}_doenca[]" value="Câncer"> Câncer</label><label><input type="checkbox" name="${p}_doenca[]" value="Diabetes"> Diabetes</label><label><input type="checkbox" name="${p}_doenca[]" value="Doença Respiratória Crônica"> Doença Respiratória Crônica</label><label><input type="checkbox" name="${p}_doenca[]" value="Demência"> Demência</label><label><input type="checkbox" name="${p}_doenca[]" value="Alzheimer"> Alzheimer</label><label><input type="checkbox" name="${p}_doenca[]" value="Parkinson"> Parkinson</label></div></div>
+        <div class="field" style="margin-top:6px;"><label>Condições</label><div class="check-grid cg3"><label><input type="checkbox" name="${p}_cond[]" value="Cateteres ou sonda para alívio de urina"> Cateteres ou sonda para alívio de urina</label><label><input type="checkbox" name="${p}_cond[]" value="Alimentação por sonda"> Alimentação por sonda</label><label><input type="checkbox" name="${p}_cond[]" value="Úlcera de pressão (escaras)"> Úlcera de pressão (escaras)</label><label><input type="checkbox" name="${p}_cond[]" value="Necessita de uso de fraldas"> Necessita de uso de fraldas</label><label><input type="checkbox" name="${p}_cond[]" value="Concentrador de Oxigênio"> Concentrador de Oxigênio</label><label><input type="checkbox" name="${p}_cond[]" value="Acamado(a)"> Acamado(a)</label><label><input type="checkbox" name="${p}_cond[]" value="Suplemento Alimentar"> Suplemento Alimentar</label></div></div>
+        <div class="field"><label>Observações</label><textarea name="${p}_saude_obs" rows="2"></textarea></div>
+        <div class="field-grid g2" style="margin-top:6px;">
+          <div class="field"><label>Utiliza tecnologia assistiva?</label><div class="radio-group"><label><input type="radio" name="${p}_tec" value="Não"> Não</label><label><input type="radio" name="${p}_tec" value="Sim"> Sim, quais: <input type="text" name="${p}_tec_quais" style="width:120px;"></label></div></div>
+          <div class="field"><label>Esteve internado nos últimos 12 meses?</label><div class="radio-group"><label><input type="radio" name="${p}_intern" value="Não"> Não</label><label><input type="radio" name="${p}_intern" value="Sim"> Sim: <input type="text" name="${p}_intern_info" style="width:120px;"></label></div></div>
+          <div class="field"><label>Faz uso contínuo de</label><div class="check-grid cg3"><label><input type="checkbox" name="${p}_uso[]" value="Cigarro"> Cigarro</label><label><input type="checkbox" name="${p}_uso[]" value="Álcool"> Álcool</label><label><input type="checkbox" name="${p}_uso[]" value="Outras substâncias"> Outras substâncias</label></div></div>
+          <div class="field"><label>Quadro de saúde se sobrepõe às demandas sociais?</label><div class="radio-group"><label><input type="radio" name="${p}_saude_sobrep" value="Não"> Não</label><label><input type="radio" name="${p}_saude_sobrep" value="Sim"> Sim</label></div></div>
+        </div>
+        <div class="field-grid g2">
+          <div class="field"><label>Hipóteses Diagnósticas / CID</label><textarea name="${p}_cid" rows="2"></textarea></div>
+          <div class="field"><label>Medicamentos</label><textarea name="${p}_med" rows="2"></textarea></div>
+        </div>
+      </div>
+      ${rendaHTML(p)}
+      ${redeHTML(p)}
+      <div class="subsec">Violações de Direitos</div>
+      <div class="card-body">
+        <div class="field-grid g2" style="margin-bottom:6px;">
+          <div class="field"><label>Confirmadas e reconhecidas pela família</label><div class="radio-group"><label><input type="radio" name="${p}_viol_fam" value="Sim"> Sim</label><label><input type="radio" name="${p}_viol_fam" value="Não"> Não</label><label><input type="radio" name="${p}_viol_fam" value="Não se aplica"> Não se aplica</label></div></div>
+          <div class="field"><label>Confirmadas e reconhecidas pela pessoa vitimada</label><div class="radio-group"><label><input type="radio" name="${p}_viol_vit" value="Sim"> Sim</label><label><input type="radio" name="${p}_viol_vit" value="Não"> Não</label><label><input type="radio" name="${p}_viol_vit" value="Não se aplica"> Não se aplica</label></div></div>
+        </div>
+        <div class="check-grid cg3">${violHTML(p,viol)}</div>
+        <div class="field-grid g2" style="margin-top:8px;">
+          <div class="field"><label>Quando iniciou</label><input type="text" name="${p}_viol_inicio"></div>
+          <div class="field"><label>Recorrência</label><div class="radio-group"><label><input type="radio" name="${p}_recorr" value="Episódica"> Episódica</label><label><input type="radio" name="${p}_recorr" value="Recorrente"> Recorrente</label></div></div>
+        </div>
+      </div>
+      ${autorHTML(p,'')}
+      ${acoesHTML(p, acoes, 'A pessoa idosa aceita acompanhamento')}
+    </div>`;
+}
+
+function blockGenero(p){
+  const viol = ['Abandono','Abuso Sexual','Autonegligência','Discriminação por Orientação Sexual','Discriminação Racial','Discriminação Religiosa','Exploração Sexual','Negligência','Situação de Desabrigo','Situação de Rua','Tráfico de Seres Humanos','Violência Física','Violência Moral','Violência Patrimonial','Violência Psicológica','Violência Vicária'];
+  const acoes = ['Orientação sobre Boletim de Ocorrência','SAMU foi acionado','Polícia foi acionada','B.O. Registrado','Defensoria Pública','CAPS','CAPS-AD','Encaminhada à UPA','Encaminhada à DDM','Medida Protetiva Solicitada','Visita Domiciliar'];
+  return `
+    <div data-tipo="Genero" class="tipo-fieldset">
+      <div class="card-body">
+        <div class="field-grid g-auto">
+          <div class="field"><label>Nome</label><input type="text" name="${p}_nome"></div>
+          <div class="field"><label>Data de Nascimento</label><input type="date" name="${p}_dn"></div>
+          <div class="field"><label>CPF</label><input type="text" name="${p}_cpf"></div>
+        </div>
+        <div class="field-grid g3">
+          <div class="field"><label>Gênero</label><input type="text" name="${p}_genero"></div>
+          <div class="field"><label>Raça</label><input type="text" name="${p}_raca"></div>
+          <div class="field"><label>Estado Civil</label><input type="text" name="${p}_estado_civil"></div>
+          <div class="field"><label>Escolaridade</label><input type="text" name="${p}_escolaridade"></div>
+          <div class="field"><label>Possui filhos?</label><div class="radio-group"><label><input type="radio" name="${p}_filhos" value="Não"> Não</label><label><input type="radio" name="${p}_filhos" value="Sim"> Sim, quantos: <input type="text" name="${p}_filhos_qtd" style="width:60px;"></label></div></div>
+        </div>
+      </div>
+      ${pcdHTML(p)}
+      <div class="card-body">
+        <div class="field-grid g2">
+          <div class="field"><label>Hipóteses Diagnósticas / CID</label><textarea name="${p}_cid" rows="2"></textarea></div>
+          <div class="field"><label>Medicamentos</label><textarea name="${p}_med" rows="2"></textarea></div>
+        </div>
+        <div class="field"><label>Faz uso contínuo de</label><div class="check-grid cg3"><label><input type="checkbox" name="${p}_uso[]" value="Cigarro"> Cigarro</label><label><input type="checkbox" name="${p}_uso[]" value="Álcool"> Álcool</label><label><input type="checkbox" name="${p}_uso[]" value="Outras substâncias"> Outras substâncias</label></div></div>
+        <div class="field" style="margin-top:6px;"><label>Experiência Profissional</label><input type="text" name="${p}_exp_prof"></div>
+      </div>
+      ${rendaHTML(p)}
+      ${redeHTML(p)}
+      <div class="subsec">Violações de Direitos</div>
+      <div class="card-body">
+        <div class="field" style="margin-bottom:6px;"><label>Confirmadas e reconhecidas pela vítima</label><div class="radio-group"><label><input type="radio" name="${p}_viol_vit" value="Sim"> Sim</label><label><input type="radio" name="${p}_viol_vit" value="Não"> Não</label></div></div>
+        <div class="check-grid cg3">${violHTML(p,viol)}</div>
+        <div class="field-grid g2" style="margin-top:8px;">
+          <div class="field"><label>Existem crianças expostas à violência?</label><div class="radio-group"><label><input type="radio" name="${p}_criancas" value="Sim"> Sim</label><label><input type="radio" name="${p}_criancas" value="Não"> Não</label></div></div>
+          <div class="field"><label>Conselho Tutelar foi comunicado?</label><div class="radio-group"><label><input type="radio" name="${p}_ct" value="Não"> Não</label><label><input type="radio" name="${p}_ct" value="Sim"> Sim</label></div></div>
+          <div class="field"><label>Outras pessoas vulneráveis expostas</label><div class="check-grid cg2"><label><input type="checkbox" name="${p}_outras[]" value="Pessoa Idosa"> Pessoa Idosa</label><label><input type="checkbox" name="${p}_outras[]" value="Pessoa com Deficiência"> Pessoa com Deficiência</label></div></div>
+          <div class="field"><label>Quando iniciou</label><input type="text" name="${p}_viol_inicio"></div>
+          <div class="field"><label>Recorrência</label><div class="radio-group"><label><input type="radio" name="${p}_recorr" value="Episódica"> Episódica</label><label><input type="radio" name="${p}_recorr" value="Recorrente"> Recorrente</label></div></div>
+        </div>
+      </div>
+      ${autorHTML(p,'')}
+      ${acoesHTML(p, acoes, 'A mulher aceita acompanhamento')}
+      <div class="card-body">
+        <div class="field"><label>A mulher foi orientada sobre a possibilidade de acolhimento institucional?</label><div class="radio-group"><label><input type="radio" name="${p}_acolh" value="Não"> Não</label><label><input type="radio" name="${p}_acolh" value="Sim"> Sim</label></div></div>
+      </div>
+    </div>`;
+}
+
+function blockPSR(p){
+  const viol = ['Abandono Familiar','Abuso Sexual','Autonegligência','Discriminação por Orientação Sexual','Discriminação Racial','Discriminação Religiosa','Exploração Sexual','Tráfico de Seres Humanos','Sem documentação civil','Sem acesso a serviços de saúde','Sem acesso à alimentação regular','Sem acesso a higiene e vestuário','Violência Física','Violência Moral','Violência Patrimonial','Violência Psicológica','Violência Vicária','Trabalho análogo à escravidão'];
+  const acoes = ['SAMU foi acionado','Defensoria Pública','CAPS','CAPS-AD','Encaminhada à UPA','Encaminhada à DDM / DP','Acionado SEAS','Casa de Passagem'];
+  return `
+    <div data-tipo="PSR" class="tipo-fieldset">
+      <div class="card-body">
+        <div class="field"><label>Nome Social</label><input type="text" name="${p}_nome_social"></div>
+        <div class="field-grid g-auto" style="margin-top:6px;">
+          <div class="field"><label>Nome</label><input type="text" name="${p}_nome"></div>
+          <div class="field"><label>Data de Nascimento</label><input type="date" name="${p}_dn"></div>
+          <div class="field"><label>CPF</label><input type="text" name="${p}_cpf"></div>
+        </div>
+        <div class="field-grid g3">
+          <div class="field"><label>Gênero</label><input type="text" name="${p}_genero"></div>
+          <div class="field"><label>Raça</label><input type="text" name="${p}_raca"></div>
+          <div class="field"><label>Estado Civil</label><input type="text" name="${p}_estado_civil"></div>
+          <div class="field"><label>Escolaridade</label><input type="text" name="${p}_escolaridade"></div>
+          <div class="field"><label>Há quanto tempo em situação de rua</label><input type="text" name="${p}_tempo_rua"></div>
+          <div class="field"><label>Município de Origem</label><input type="text" name="${p}_mun_origem"></div>
+          <div class="field"><label>Município da última residência fixa</label><input type="text" name="${p}_mun_res_fixa"></div>
+          <div class="field"><label>Local onde costuma pernoitar</label><input type="text" name="${p}_pernoite"></div>
+        </div>
+      </div>
+      ${pcdHTML(p)}
+      <div class="subsec">Motivos da Situação de Rua</div>
+      <div class="card-body">
+        <div class="check-grid cg3">
+          <label><input type="checkbox" name="${p}_motivos[]" value="Conflito Familiar"> Conflito Familiar</label>
+          <label><input type="checkbox" name="${p}_motivos[]" value="Violência Doméstica"> Violência Doméstica</label>
+          <label><input type="checkbox" name="${p}_motivos[]" value="Transtorno Mental"> Transtorno Mental</label>
+          <label><input type="checkbox" name="${p}_motivos[]" value="Desemprego / Dificuldade Financeira"> Desemprego / Dificuldade Financeira</label>
+          <label><input type="checkbox" name="${p}_motivos[]" value="Rompimento de Vínculos Familiares"> Rompimento de Vínculos Familiares</label>
+          <label><input type="checkbox" name="${p}_motivos[]" value="Migração"> Migração</label>
+          <label><input type="checkbox" name="${p}_motivos[]" value="Uso de álcool e/ou outras drogas"> Uso de álcool e/ou outras drogas</label>
+          <label><input type="checkbox" name="${p}_motivos[]" value="Saída de unidade prisional"> Saída de unidade prisional</label>
+        </div>
+        <div class="field" style="margin-top:6px;"><label>Outros</label><input type="text" name="${p}_motivos_outros"></div>
+      </div>
+      <div class="card-body">
+        <div class="field-grid g2">
+          <div class="field"><label>Hipóteses Diagnósticas / CID</label><textarea name="${p}_cid" rows="2"></textarea></div>
+          <div class="field"><label>Medicamentos</label><textarea name="${p}_med" rows="2"></textarea></div>
+        </div>
+        <div class="field"><label>Faz uso contínuo de</label><div class="check-grid cg4"><label><input type="checkbox" name="${p}_uso[]" value="Cigarro"> Cigarro</label><label><input type="checkbox" name="${p}_uso[]" value="Álcool"> Álcool</label><label><input type="checkbox" name="${p}_uso[]" value="Crack"> Crack</label><label><input type="checkbox" name="${p}_uso[]" value="Outras substâncias ilícitas"> Outras substâncias ilícitas</label></div></div>
+        <div class="field" style="margin-top:6px;"><label>Apresenta sinais de transtorno mental?</label><div class="radio-group"><label><input type="radio" name="${p}_transf_mental" value="Não"> Não</label><label><input type="radio" name="${p}_transf_mental" value="Sim (sem diagnóstico)"> Sim (sem diagnóstico)</label><label><input type="radio" name="${p}_transf_mental" value="Sim (com diagnóstico)"> Sim (com diagnóstico), qual: <input type="text" name="${p}_transf_qual" style="width:120px;"></label></div></div>
+      </div>
+      <div class="subsec">Renda e Documentação</div>
+      <div class="card-body">
+        <div class="field"><label>Fontes de Renda</label><div class="check-grid cg3"><label><input type="checkbox" name="${p}_renda[]" value="Aposentadoria"> Aposentadoria</label><label><input type="checkbox" name="${p}_renda[]" value="BPC Idoso"> BPC Idoso</label><label><input type="checkbox" name="${p}_renda[]" value="BPC PcD"> BPC PcD</label><label><input type="checkbox" name="${p}_renda[]" value="Pensão por Morte"> Pensão por Morte</label><label><input type="checkbox" name="${p}_renda[]" value="Programa Bolsa Família"> Programa Bolsa Família</label></div></div>
+        <div class="field" style="margin-top:6px;"><label>Experiência Profissional</label><input type="text" name="${p}_exp_prof"></div>
+        <div class="field" style="margin-top:6px;"><label>Documentação Pessoal</label><div class="check-grid cg4"><label><input type="checkbox" name="${p}_docs[]" value="RG"> RG</label><label><input type="checkbox" name="${p}_docs[]" value="CPF"> CPF</label><label><input type="checkbox" name="${p}_docs[]" value="Certidão Nascimento/Casamento"> Certidão Nascimento/Casamento</label><label><input type="checkbox" name="${p}_docs[]" value="Cartão SUS"> Cartão SUS</label></div></div>
+      </div>
+      <div class="subsec">Violações de Direitos e Vulnerabilidades</div>
+      <div class="card-body"><div class="check-grid cg3">${violHTML(p,viol)}</div></div>
+      <div class="subsec">Vínculos</div>
+      <div class="card-body">
+        <div class="field-grid g2">
+          <div class="field"><label>Possui familiares com quem mantém contato?</label><div class="radio-group"><label><input type="radio" name="${p}_fam_cont" value="Não"> Não</label><label><input type="radio" name="${p}_fam_cont" value="Sim"> Sim</label></div></div>
+          <div class="field"><label>Possui animais de estimação?</label><div class="radio-group"><label><input type="radio" name="${p}_animais" value="Não"> Não</label><label><input type="radio" name="${p}_animais" value="Sim"> Sim, quantos e espécie: <input type="text" name="${p}_animais_info" style="width:120px;"></label></div></div>
+          <div class="field"><label>Está vinculada a algum serviço, comércio ou território?</label><div class="radio-group"><label><input type="radio" name="${p}_vinculo" value="Não"> Não</label><label><input type="radio" name="${p}_vinculo" value="Sim"> Sim, qual? <input type="text" name="${p}_vinculo_info" style="width:120px;"></label></div></div>
+        </div>
+      </div>
+      ${acoesHTML(p, acoes, 'A pessoa aceita acompanhamento')}
+    </div>`;
+}
+
+function blockLGBT(p){
+  const viol = ['Abandono Familiar','Abuso Sexual','Autonegligência','Discriminação por Orientação Sexual','Discriminação Racial','Discriminação Religiosa','Exploração Sexual','Negligência','Situação de Desabrigo (Expulsão)','Situação de Rua','Tráfico de Seres Humanos','Violência Física','Violência Moral','Violência Patrimonial','Violência Psicológica'];
+  const acoes = ['Orientação sobre Boletim de Ocorrência','SAMU foi acionado','Polícia foi acionada','B.O. Registrado','Defensoria Pública','CAPS','CAPS-AD','Encaminhada à UPA','Encaminhada à DDM','Medida Protetiva Solicitada','Visita Domiciliar'];
+  return `
+    <div data-tipo="LGBT" class="tipo-fieldset">
+      <div class="card-body">
+        <div class="field"><label>Nome Social</label><input type="text" name="${p}_nome_social"></div>
+        <div class="field-grid g-auto" style="margin-top:6px;">
+          <div class="field"><label>Nome</label><input type="text" name="${p}_nome"></div>
+          <div class="field"><label>Data de Nascimento</label><input type="date" name="${p}_dn"></div>
+          <div class="field"><label>CPF</label><input type="text" name="${p}_cpf"></div>
+        </div>
+        <div class="field-grid g3">
+          <div class="field"><label>Gênero</label><input type="text" name="${p}_genero"></div>
+          <div class="field"><label>Raça</label><input type="text" name="${p}_raca"></div>
+          <div class="field"><label>Estado Civil</label><input type="text" name="${p}_estado_civil"></div>
+          <div class="field"><label>Identidade de Gênero Declarada</label><input type="text" name="${p}_id_genero"></div>
+          <div class="field"><label>Orientação Sexual Declarada</label><input type="text" name="${p}_orient_sex"></div>
+          <div class="field"><label>Escolaridade</label><input type="text" name="${p}_escolaridade"></div>
+          <div class="field"><label>Possui documentação atualizada?</label><div class="radio-group"><label><input type="radio" name="${p}_doc_atualizada" value="Não"> Não</label><label><input type="radio" name="${p}_doc_atualizada" value="Sim"> Sim</label></div></div>
+        </div>
+      </div>
+      ${pcdHTML(p)}
+      <div class="card-body">
+        <div class="field-grid g2">
+          <div class="field"><label>Hipóteses Diagnósticas / CID</label><textarea name="${p}_cid" rows="2"></textarea></div>
+          <div class="field"><label>Medicamentos</label><textarea name="${p}_med" rows="2"></textarea></div>
+        </div>
+        <div class="field"><label>Faz uso contínuo de</label><div class="check-grid cg3"><label><input type="checkbox" name="${p}_uso[]" value="Cigarro"> Cigarro</label><label><input type="checkbox" name="${p}_uso[]" value="Álcool"> Álcool</label><label><input type="checkbox" name="${p}_uso[]" value="Outras substâncias"> Outras substâncias</label></div></div>
+        <div class="field" style="margin-top:6px;"><label>Experiência Profissional</label><input type="text" name="${p}_exp_prof"></div>
+      </div>
+      ${rendaHTML(p)}
+      <div class="subsec">Violações de Direitos</div>
+      <div class="card-body">
+        <div class="field" style="margin-bottom:6px;"><label>Confirmadas e reconhecidas pela vítima</label><div class="radio-group"><label><input type="radio" name="${p}_viol_vit" value="Sim"> Sim</label><label><input type="radio" name="${p}_viol_vit" value="Não"> Não</label></div></div>
+        <div class="check-grid cg3">${violHTML(p,viol)}</div>
+        <div class="field-grid g2" style="margin-top:8px;">
+          <div class="field"><label>Quando iniciou</label><input type="text" name="${p}_viol_inicio"></div>
+          <div class="field"><label>Recorrência</label><div class="radio-group"><label><input type="radio" name="${p}_recorr" value="Episódica"> Episódica</label><label><input type="radio" name="${p}_recorr" value="Recorrente"> Recorrente</label></div></div>
+        </div>
+      </div>
+      ${autorHTML(p,'')}
+      ${acoesHTML(p, acoes, 'A pessoa aceita acompanhamento')}
+    </div>`;
+}
+
+function blockRacismo(p){
+  const tiposRacismo = ['Racismo individual (atitudes e comportamentos discriminatórios de pessoas)','Racismo estrutural (desigualdades raciais enraizadas nas estruturas sociais)','Discriminação no ambiente de trabalho','Discriminação no acesso a serviços públicos ou privados','Discriminação religiosa (intolerância a religiões de matriz africana ou indígena)','Racismo institucional (práticas discriminatórias de instituições e organizações)','Injúria racial (ofensa com uso de elementos de raça, cor ou etnia – Lei n.º 14.532/2023)','Discriminação no ambiente escolar / educacional','Violência física motivada por racismo','Violência patrimonial motivada por racismo','Violência psicológica motivada por racismo','Perseguição / cyberbullying racial (redes sociais, mensagens)','Discriminação no acesso à moradia'];
+  const locais = ['Residência / domicílio','Unidade de Saúde','Via pública / transporte','Delegacia / órgão de segurança','Comércio / estabelecimento privado','Ambiente de trabalho','Equipamento público (CRAS / CREAS)','Redes Sociais / ambiente virtual','Escola / instituição de ensino','Instituição religiosa'];
+  const impactos = ['Perda do emprego / renda','Comprometimento de vínculos familiares','Exposição a outras formas de violência','Dificuldade de acesso a serviços','Comprometimento de vínculos comunitários','Evasão escolar','Situação de vulnerabilidade habitacional'];
+  const acoes = ['Orientação sobre Boletim de Ocorrência','Denúncia à Ouvidoria do órgão envolvido','Ministério Público','B.O. Registrado','Defensoria Pública','Disque 100','Visita Domiciliar'];
+  return `
+    <div data-tipo="Racismo" class="tipo-fieldset">
+      <div class="card-body">
+        <div class="field"><label>Nome Social</label><input type="text" name="${p}_nome_social"></div>
+        <div class="field-grid g-auto" style="margin-top:6px;">
+          <div class="field"><label>Nome</label><input type="text" name="${p}_nome"></div>
+          <div class="field"><label>Data de Nascimento</label><input type="date" name="${p}_dn"></div>
+          <div class="field"><label>CPF</label><input type="text" name="${p}_cpf"></div>
+        </div>
+        <div class="field-grid g3">
+          <div class="field"><label>Gênero</label><input type="text" name="${p}_genero"></div>
+          <div class="field"><label>Raça</label><input type="text" name="${p}_raca"></div>
+          <div class="field"><label>Estado Civil</label><input type="text" name="${p}_estado_civil"></div>
+          <div class="field"><label>Escolaridade</label><input type="text" name="${p}_escolaridade"></div>
+          <div class="field"><label>Possui documentação atualizada?</label><div class="radio-group"><label><input type="radio" name="${p}_doc_atualizada" value="Não"> Não</label><label><input type="radio" name="${p}_doc_atualizada" value="Sim"> Sim</label></div></div>
+        </div>
+      </div>
+      ${pcdHTML(p)}
+      <div class="subsec">Pertencimento Étnico Cultural</div>
+      <div class="card-body">
+        <div class="check-grid cg4">
+          <label><input type="checkbox" name="${p}_etnico[]" value="Quilombola"> Quilombola</label>
+          <label><input type="checkbox" name="${p}_etnico[]" value="Comunidade Cigana"> Comunidade Cigana</label>
+          <label><input type="checkbox" name="${p}_etnico[]" value="Indígena"> Indígena</label>
+          <label><input type="checkbox" name="${p}_etnico[]" value="Comunidade de Terreiro"> Comunidade de Terreiro</label>
+        </div>
+        <div class="field" style="margin-top:6px;"><label>Povo/etnia (se indígena)</label><input type="text" name="${p}_etnico_povo"></div>
+      </div>
+      <div class="subsec">Tipo de Racismo / Discriminação Racial Identificada</div>
+      <div class="card-body"><div class="check-grid cg2">${tiposRacismo.map(o=>`<label><input type="checkbox" name="${p}_tipo_racismo[]" value="${o}"> ${o}</label>`).join('')}</div></div>
+      <div class="subsec">Local(is) onde ocorreu a discriminação / violência</div>
+      <div class="card-body"><div class="check-grid cg3">${locais.map(o=>`<label><input type="checkbox" name="${p}_locais[]" value="${o}"> ${o}</label>`).join('')}</div></div>
+      <div class="subsec">Frequência e Recorrência</div>
+      <div class="card-body">
+        <div class="check-grid cg3">
+          <label><input type="checkbox" name="${p}_freq_rec[]" value="Episódio único"> Episódio único</label>
+          <label><input type="checkbox" name="${p}_freq_rec[]" value="Histórico de longa data"> Histórico de longa data</label>
+          <label><input type="checkbox" name="${p}_freq_rec[]" value="Recorrente"> Recorrente</label>
+          <label><input type="checkbox" name="${p}_freq_rec[]" value="Sistemático / contínuo"> Sistemático / contínuo</label>
+          <label><input type="checkbox" name="${p}_freq_rec[]" value="Não identificado"> Não identificado</label>
+        </div>
+      </div>
+      <div class="subsec">Contexto</div>
+      <div class="card-body">
+        <div class="field-grid g2">
+          <div class="field"><label>Há testemunhas?</label><div class="radio-group"><label><input type="radio" name="${p}_testemunhas" value="Não"> Não</label><label><input type="radio" name="${p}_testemunhas" value="Sim"> Sim</label></div></div>
+          <div class="field"><label>Há provas materiais? (prints, áudios, fotos, documentos)</label><textarea name="${p}_provas" rows="2"></textarea></div>
+        </div>
+      </div>
+      <div class="subsec">Suposto Autor das Violações de Direitos</div>
+      <div class="card-body">
+        <div class="check-grid cg3" style="margin-bottom:6px;">
+          <label><input type="checkbox" name="${p}_autor_tipo[]" value="Desconhecido"> Desconhecido</label>
+          <label><input type="checkbox" name="${p}_autor_tipo[]" value="Vizinho(a)"> Vizinho(a)</label>
+          <label><input type="checkbox" name="${p}_autor_tipo[]" value="Servidor(a) público(a)"> Servidor(a) público(a)</label>
+          <label><input type="checkbox" name="${p}_autor_tipo[]" value="Empregador / chefe"> Empregador / chefe</label>
+          <label><input type="checkbox" name="${p}_autor_tipo[]" value="Agente de segurança pública"> Agente de segurança pública</label>
+          <label><input type="checkbox" name="${p}_autor_tipo[]" value="Colega de trabalho / escolaridade"> Colega de trabalho / escolaridade</label>
+          <label><input type="checkbox" name="${p}_autor_tipo[]" value="Representante de instituição pública"> Representante de instituição pública</label>
+          <label><input type="checkbox" name="${p}_autor_tipo[]" value="Representante de instituição privada"> Representante de instituição privada</label>
+        </div>
+        <div class="field-grid g2">
+          <div class="field"><label>Familiar, parentesco</label><input type="text" name="${p}_autor_parentesco"></div>
+          <div class="field"><label>Conhecido, relação</label><input type="text" name="${p}_autor_relacao"></div>
+          <div class="field"><label>Nome</label><input type="text" name="${p}_autor_nome"></div>
+          <div class="field"><label>Mantém contato com a vítima?</label><div class="radio-group"><label><input type="radio" name="${p}_autor_contato" value="Não"> Não</label><label><input type="radio" name="${p}_autor_contato" value="Sim"> Sim</label></div></div>
+          <div class="field"><label>Idade suposta</label><input type="text" name="${p}_autor_idade"></div>
+        </div>
+        <div class="field"><label>Faz uso de SPA?</label><div class="check-grid cg3"><label><input type="checkbox" name="${p}_autor_spa[]" value="Álcool"> Álcool</label><label><input type="checkbox" name="${p}_autor_spa[]" value="Crack"> Crack</label><label><input type="checkbox" name="${p}_autor_spa[]" value="Outras drogas ilícitas"> Outras drogas ilícitas</label></div></div>
+      </div>
+      <div class="subsec">Impactos Sociais, Econômicos e Institucionais</div>
+      <div class="card-body"><div class="check-grid cg3">${impactos.map(o=>`<label><input type="checkbox" name="${p}_impactos[]" value="${o}"> ${o}</label>`).join('')}</div></div>
+      ${acoesHTML(p, acoes, 'A pessoa aceita acompanhamento')}
+    </div>`;
+}
+
+const BLOCOS = { Crianca: blockCrianca, Idoso: blockIdoso, Genero: blockGenero, PSR: blockPSR, LGBT: blockLGBT, Racismo: blockRacismo };
+const NOMES_SEG = { Crianca:'B. Criança / Adolescente', Idoso:'C. Pessoa Idosa e/ou PcD', Genero:'D. Violência de Gênero', PSR:'E. Pessoa em Situação de Rua', LGBT:'F. População LGBTQIAPN+', Racismo:'G. Vítima de Racismo' };
+
+function addVictim(){
+  victimCount++;
+  const id = victimCount;
+  const p  = 'vitima'+id;
+  const div = document.createElement('div');
+  div.className = 'victim-block';
+  div.dataset.id = id;
+  div.innerHTML = `
+    <div class="victim-top">
+      <h3>Vítima #${id}</h3>
+      <button type="button" class="remove-btn" onclick="this.closest('.victim-block').remove()">Remover</button>
+    </div>
+    <div class="victim-body">
+      <div style="padding:8px 0 10px;">
+        <label style="font-size:11px;font-weight:700;color:#0b3d62;display:block;margin-bottom:4px;">Segmento</label>
+        <select name="${p}_segmento" onchange="trocarTipo(this,'${p}')" style="width:100%;padding:6px;border:1px solid #b0bec8;border-radius:3px;font-size:12px;">
+          <option value="">Selecione o segmento...</option>
+          <option value="Crianca">B. Criança / Adolescente</option>
+          <option value="Idoso">C. Pessoa Idosa e/ou Pessoa com Deficiência</option>
+          <option value="Genero">D. Violência de Gênero</option>
+          <option value="PSR">E. Pessoa em Situação de Rua</option>
+          <option value="LGBT">F. População LGBTQIAPN+</option>
+          <option value="Racismo">G. Vítima de Racismo</option>
+        </select>
+      </div>
+      <div class="tipos-container">
+        ${Object.keys(BLOCOS).map(k=>BLOCOS[k](p)).join('')}
+      </div>
+    </div>`;
+  document.getElementById('victimsContainer').appendChild(div);
+}
+
+function trocarTipo(sel, p){
+  const container = sel.closest('.victim-block').querySelector('.tipos-container');
+  container.querySelectorAll('.tipo-fieldset').forEach(el=>el.classList.remove('ativo'));
+  if(sel.value){
+    const bloco = container.querySelector('[data-tipo="'+sel.value+'"]');
+    if(bloco) bloco.classList.add('ativo');
+    sel.closest('.victim-block').querySelector('.victim-top h3').textContent =
+      (NOMES_SEG[sel.value]||'Vítima') + ' #' + sel.closest('.victim-block').dataset.id;
+  }
+}
+
+addVictim();
+
+// -- Validacao e envio ---
+function validarFormulario(data) {
+  const erros = [];
+  if (!data['data_preenchimento']) erros.push('Data do Preenchimento');
+  if (!data['equipamento'])        erros.push('Equipamento / Servico');
+  if (!data['tecnico_responsavel'])erros.push('Tecnico Responsavel');
+  if (!data['remetente_email'])    erros.push('E-mail do Tecnico');
+  if (!data['ref_nome'])           erros.push('Nome da Referencia Familiar');
+  const temVitima = Object.keys(data).some(k => k.endsWith('_segmento') && data[k]);
+  if (!temVitima) erros.push('Adicione ao menos uma vítima e selecione seu segmento');
+  return erros;
+}
+
+function mostrarSucesso(data) {
+  document.querySelector('.container').style.display = 'none';
+  document.getElementById('telaEnvio').style.display = 'block';
+  const segs = data['segmento']
+    ? (Array.isArray(data['segmento']) ? data['segmento'].join(', ') : data['segmento'])
+    : '-';
+  document.getElementById('resumoEnvio').innerHTML =
+    '<strong>Referência Familiar:</strong> ' + (data['ref_nome']||'-') + '<br>' +
+    '<strong>Técnico:</strong> '             + (data['tecnico_responsavel']||'-') + '<br>' +
+    '<strong>Equipamento:</strong> '               + (data['equipamento']||'-') + '<br>' +
+    '<strong>Data:</strong> '                      + (data['data_preenchimento']||'-') + '<br>' +
+    '<strong>Segmentos:</strong> '                 + segs;
+  window.scrollTo(0, 0);
+}
+
+function novaPagina() {
+  document.getElementById('telaEnvio').style.display = 'none';
+  document.querySelector('.container').style.display = 'block';
+  document.getElementById('creasForm').reset();
+  document.getElementById('victimsContainer').innerHTML = '';
+  victimCount = 0;
+  addVictim();
+  window.scrollTo(0, 0);
+}
+
+// URL do Google Apps Script — cole aqui o link /exec do seu projeto
+//const SCRIPT_URL = 'https://script.google.com/macros/s/SEU_ID_AQUI/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw5T5Pg9Xbrl-c8vN06RoPmkWBlnSvN5-qc1L8oe5u-sQerc-VWhnqQrMWwFM8dUPXC/exec';
+
+document.getElementById('creasForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const statusEl  = document.getElementById('statusMsg');
+  const submitBtn = this.querySelector('button[type=submit]');
+  const formData  = new FormData(this);
+  const data = {};
+  for(const [key, value] of formData.entries()){
+    if(key.endsWith('[]')){
+      const k = key.slice(0,-2);
+      if(!data[k]) data[k] = [];
+      data[k].push(value);
+    } else { data[key] = value; }
+  }
+  data['_timestamp'] = new Date().toISOString();
+
+  const erros = validarFormulario(data);
+  if (erros.length > 0) {
+    statusEl.style.color = '#c0392b';
+    statusEl.textContent = 'Campos obrigatorios nao preenchidos: ' + erros.join('; ');
+    window.scrollTo({top:0, behavior:'smooth'});
+    return;
+  }
+
+  statusEl.style.color = '#0b3d62';
+  statusEl.textContent = 'Preparando envio...';
+  submitBtn.disabled = true;
+
+  const arquivos = document.getElementById('arquivosAnexos').files;
+  const leituras = Array.from(arquivos).map(file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve({nome:file.name, tipo:file.type||'application/octet-stream', dados:reader.result.split(',')[1]});
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  }));
+
+  Promise.all(leituras).then(function(files){
+    statusEl.textContent = 'Enviando...';
+    fetch(SCRIPT_URL, {
+      method:  'POST',
+      mode:    'no-cors',
+      headers: {'Content-Type': 'text/plain'},
+      body:    JSON.stringify({data: data, files: files})
+    })
+    .then(function(){
+      submitBtn.disabled = false;
+      mostrarSucesso(data);
+    })
+    .catch(function(err){
+      submitBtn.disabled = false;
+      statusEl.style.color = '#8a1c1c';
+      statusEl.textContent = 'Erro ao enviar: ' + err.message;
+    });
+  }).catch(function(){
+    submitBtn.disabled = false;
+    statusEl.style.color = '#8a1c1c';
+    statusEl.textContent = 'Erro ao ler os arquivos selecionados.';
+  });
+});
+</script>
