@@ -856,7 +856,7 @@ function novaPagina() {
 }
 
 // URL do Google Apps Script — cole aqui o link /exec do seu projeto
-const SCRIPT_URL = 'https://script.google.com/macros/s/SEU_ID_AQUI/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw5T5Pg9Xbrl-c8vN06RoPmkWBlnSvN5-qc1L8oe5u-sQerc-VWhnqQrMWwFM8dUPXC/exec';
 
 document.getElementById('creasForm').addEventListener('submit', function(e){
   e.preventDefault();
@@ -903,13 +903,15 @@ document.getElementById('creasForm').addEventListener('submit', function(e){
       body:    JSON.stringify({data: data, files: files})
     })
     .then(function(){
+      // no-cors nao permite ler a resposta, mas se chegou aqui o envio foi realizado
       submitBtn.disabled = false;
       mostrarSucesso(data);
     })
     .catch(function(err){
       submitBtn.disabled = false;
       statusEl.style.color = '#8a1c1c';
-      statusEl.textContent = 'Erro ao enviar: ' + err.message;
+      statusEl.textContent = 'Erro de rede ao enviar. Verifique sua conexao e tente novamente.';
+      console.error('Fetch error:', err);
     });
   }).catch(function(){
     submitBtn.disabled = false;
