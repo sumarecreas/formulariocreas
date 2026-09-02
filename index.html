@@ -589,14 +589,46 @@ function novaPagina(){
 document.getElementById('creasForm').addEventListener('submit',function(e){
   e.preventDefault();
   var statusEl=document.getElementById('statusMsg'),submitBtn=this.querySelector('button[type=submit]');
-  var fd=new FormData(this),data={};
+  var data={};
+
+  // 1. Coletar campos gerais (nao-vitima) via FormData
+  var fd=new FormData(this);
   for(var pair of fd.entries()){
     var k=pair[0],v=pair[1];
+    if(/^vitima\d+_/.test(k)) continue; // vitimas tratadas separadamente
     if(k.endsWith('[]')){var kk=k.slice(0,-2);if(!data[kk])data[kk]=[];data[kk].push(v);}
     else{data[k]=v;}
   }
+
+  // 2. Coletar dados das vitimas APENAS do bloco ativo (evita sobrescrita entre segmentos)
+  document.querySelectorAll('.victim-block').forEach(function(block,idx){
+    var oldId=block.dataset.id, oldPfx='vitima'+oldId, newPfx='vitima'+(idx+1);
+    // segmento
+    var sel=block.querySelector('select[name="'+oldPfx+'_segmento"]');
+    if(sel) data[newPfx+'_segmento']=sel.value;
+    // apenas o bloco ativo
+    var ativo=block.querySelector('.tipo-fieldset.ativo');
+    if(!ativo) return;
+    ativo.querySelectorAll('input,select,textarea').forEach(function(el){
+      if(!el.name) return;
+      var rawName=el.name.startsWith(oldPfx+'_') ? newPfx+'_'+el.name.slice(oldPfx.length+1) : el.name;
+      var isArr=rawName.endsWith('[]'), cleanName=isArr?rawName.slice(0,-2):rawName;
+      if(el.type==='checkbox'){
+        if(!el.checked) return;
+        if(!data[cleanName]) data[cleanName]=[];
+        data[cleanName].push(el.value);
+      } else if(el.type==='radio'){
+        if(el.checked) data[cleanName]=el.value;
+      } else if(isArr){
+        if(!data[cleanName]) data[cleanName]=[];
+        data[cleanName].push(el.value);
+      } else {
+        data[cleanName]=el.value;
+      }
+    });
+  });
+
   data['_timestamp']=new Date().toISOString();
-  remapearVitimas(data);
   var erros=validarFormulario(data);
   if(erros.length>0){
     var bann=document.getElementById('bannErro');
