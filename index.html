@@ -751,7 +751,7 @@ function addVictim(){
   div.innerHTML = `
     <div class="victim-top">
       <h3>Vítima #${id}</h3>
-      <button type="button" class="remove-btn" onclick="this.closest('.victim-block').remove()">Remover</button>
+      <button type="button" class="remove-btn" onclick="this.closest('.victim-block').remove(); renumerarVitimas()">Remover</button>
     </div>
     <div class="victim-body">
       <div style="padding:8px 0 10px;">
@@ -785,6 +785,37 @@ function trocarTipo(sel, p){
 }
 
 addVictim();
+
+// -- Renumeracao de vitimas ---
+function renumerarVitimas() {
+  document.querySelectorAll('.victim-block').forEach(function(bloco, idx) {
+    const h3 = bloco.querySelector('.victim-top h3');
+    h3.textContent = h3.textContent.replace(/#\d+/, '#' + (idx + 1));
+  });
+}
+
+function remapearVitimas(data) {
+  const blocos = document.querySelectorAll('.victim-block');
+  const remapped = {};
+  const prefixosAntigos = [];
+  blocos.forEach(function(bloco, idx) {
+    const oldPrefix = 'vitima' + bloco.dataset.id;
+    const newPrefix = 'vitima' + (idx + 1);
+    prefixosAntigos.push(oldPrefix);
+    Object.keys(data).forEach(function(k) {
+      if (k.startsWith(oldPrefix + '_') || k === oldPrefix + '_segmento') {
+        remapped[newPrefix + k.slice(oldPrefix.length)] = data[k];
+      }
+    });
+  });
+  prefixosAntigos.forEach(function(pre) {
+    Object.keys(data).forEach(function(k) {
+      if (k.startsWith(pre + '_')) delete data[k];
+    });
+  });
+  Object.assign(data, remapped);
+  return data;
+}
 
 // -- Validacao e envio ---
 function validarFormulario(data) {
@@ -825,8 +856,7 @@ function novaPagina() {
 }
 
 // URL do Google Apps Script — cole aqui o link /exec do seu projeto
-//const SCRIPT_URL = 'https://script.google.com/macros/s/SEU_ID_AQUI/exec';
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw5T5Pg9Xbrl-c8vN06RoPmkWBlnSvN5-qc1L8oe5u-sQerc-VWhnqQrMWwFM8dUPXC/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/SEU_ID_AQUI/exec';
 
 document.getElementById('creasForm').addEventListener('submit', function(e){
   e.preventDefault();
@@ -842,6 +872,7 @@ document.getElementById('creasForm').addEventListener('submit', function(e){
     } else { data[key] = value; }
   }
   data['_timestamp'] = new Date().toISOString();
+  remapearVitimas(data);
 
   const erros = validarFormulario(data);
   if (erros.length > 0) {
