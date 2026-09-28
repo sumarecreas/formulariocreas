@@ -114,7 +114,7 @@ table.composicao td input{border:none;background:transparent;width:100%;font-siz
   <div class="sec-header">Identifica&ccedil;&atilde;o do Remetente</div>
   <div class="card-body">
     <div class="field-grid g3">
-      <div class="field"><label class="obrigatorio">Data do Preenchimento</label><input type="date" name="data_preenchimento" id="dataHoje" required></div>
+      <div class="field"><label class="obrigatorio">Data do Preenchimento</label><input type="text" name="data_preenchimento" id="dataHoje" placeholder="dd/mm/aaaa" required data-tipo="data"></div>
       <div class="field"><label class="obrigatorio">Equipamento / Servi&ccedil;o</label><input type="text" name="equipamento" required></div>
       <div class="field"><label class="obrigatorio">T&eacute;cnico Respons&aacute;vel</label><input type="text" name="tecnico_responsavel" required></div>
       <div class="field"><label>Telefone</label><input type="tel" name="remetente_telefone"></div>
@@ -128,7 +128,7 @@ table.composicao td input{border:none;background:transparent;width:100%;font-siz
   <div class="card-body">
     <div class="field-grid g-auto">
       <div class="field"><label class="obrigatorio">Nome</label><input type="text" name="ref_nome" required></div>
-      <div class="field"><label>Data de Nascimento</label><input type="date" name="ref_dn"></div>
+      <div class="field"><label>Data de Nascimento</label><input type="text" name="ref_dn" placeholder="dd/mm/aaaa" data-tipo="data"></div>
       <div class="field"><label>CPF</label><input type="text" name="ref_cpf"></div>
     </div>
     <div class="field-grid g3">
@@ -156,12 +156,12 @@ table.composicao td input{border:none;background:transparent;width:100%;font-siz
   <div class="sec-header light">Composi&ccedil;&atilde;o Familiar | Corresidentes</div>
   <div class="card-body">
     <table class="composicao" id="tblComp">
-      <thead><tr><th>Parentesco</th><th>Nome Completo</th><th>Data Nasc.</th><th>Idade</th><th></th></tr></thead>
+      <thead><tr><th>Parentesco com a Referência Familiar</th><th>Nome Completo</th><th>Data Nasc.</th><th>Idade</th><th></th></tr></thead>
       <tbody>
         <tr>
           <td><input type="text" name="comp_parentesco[]"></td>
           <td><input type="text" name="comp_nome[]"></td>
-          <td><input type="date" name="comp_dn[]"></td>
+          <td><input type="text" name="comp_dn[]" placeholder="dd/mm/aaaa" data-tipo="data"></td>
           <td><input type="text" name="comp_idade[]" style="width:60px;"></td>
           <td><button type="button" class="btn-add-row" onclick="this.closest('tr').remove()" style="color:#c0392b;border-color:#c0392b;">&#10005;</button></td>
         </tr>
@@ -282,15 +282,30 @@ table.composicao td input{border:none;background:transparent;width:100%;font-siz
 
 var victimCount = 0;
 
+function aplicarMascaraData(input){
+  input.addEventListener('input',function(){
+    var v=this.value.replace(/\D/g,'');
+    if(v.length>8) v=v.slice(0,8);
+    if(v.length>4) v=v.slice(0,2)+'/'+v.slice(2,4)+'/'+v.slice(4);
+    else if(v.length>2) v=v.slice(0,2)+'/'+v.slice(2);
+    this.value=v;
+  });
+}
+function ativarMascarasDatas(ctx){
+  (ctx||document).querySelectorAll('input[data-tipo="data"]').forEach(function(el){aplicarMascaraData(el);});
+}
+
 (function(){
   var h=new Date(),dd=String(h.getDate()).padStart(2,'0'),mm=String(h.getMonth()+1).padStart(2,'0'),yyyy=h.getFullYear();
-  var el=document.getElementById('dataHoje'); if(el) el.value=yyyy+'-'+mm+'-'+dd;
+  var el=document.getElementById('dataHoje'); if(el) el.value=dd+'/'+mm+'/'+yyyy;
+  ativarMascarasDatas(document);
 })();
 
 function addLinhaComp(){
   var tr=document.createElement('tr');
-  tr.innerHTML='<td><input type="text" name="comp_parentesco[]"></td><td><input type="text" name="comp_nome[]"></td><td><input type="date" name="comp_dn[]"></td><td><input type="text" name="comp_idade[]" style="width:60px;"></td><td><button type="button" class="btn-add-row" onclick="this.closest(\'tr\').remove()" style="color:#c0392b;border-color:#c0392b;">&#10005;</button></td>';
-  document.querySelector('#tblComp tbody').appendChild(tr);
+  tr.innerHTML='<td><input type="text" name="comp_parentesco[]"></td><td><input type="text" name="comp_nome[]"></td><td><input type="text" name="comp_dn[]" placeholder="dd/mm/aaaa" data-tipo="data"></td><td><input type="text" name="comp_idade[]" style="width:60px;"></td><td><button type="button" class="btn-add-row" onclick="this.closest(\'tr\').remove()" style="color:#c0392b;border-color:#c0392b;">&#10005;</button></td>';
+  var newTr=document.querySelector('#tblComp tbody').appendChild(tr);
+  ativarMascarasDatas(newTr);
 }
 
 var PCD=['Auditiva','Autismo','F\xedsica','Intelectual','Visual','Transtorno/Doen\xe7a Mental','Em investiga\xe7\xe3o','Suspeita'];
@@ -345,7 +360,7 @@ function cabVitima(p){
   return '<div class="card-body"><div class="field-grid g-auto">'+
   '<div class="field"><label>Nome Social</label><input type="text" name="'+p+'_nome_social"></div>'+
   '<div class="field"><label>Nome</label><input type="text" name="'+p+'_nome"></div>'+
-  '<div class="field"><label>Data de Nascimento</label><input type="date" name="'+p+'_dn"></div>'+
+  '<div class="field"><label>Data de Nascimento</label><input type="text" name="'+p+'_dn" placeholder="dd/mm/aaaa" data-tipo="data"></div>'+
   '<div class="field"><label>CPF</label><input type="text" name="'+p+'_cpf"></div></div>'+
   '<div class="field-grid g3">'+
   '<div class="field"><label>G\xeanero</label><input type="text" name="'+p+'_genero"></div>'+
@@ -369,7 +384,7 @@ function blockCrianca(p){
   return '<div data-tipo="Crianca" class="tipo-fieldset">'+
     '<div class="card-body"><div class="field-grid g-auto">'+
     '<div class="field"><label>Nome</label><input type="text" name="'+p+'_nome"></div>'+
-    '<div class="field"><label>Data de Nascimento</label><input type="date" name="'+p+'_dn"></div>'+
+    '<div class="field"><label>Data de Nascimento</label><input type="text" name="'+p+'_dn" placeholder="dd/mm/aaaa" data-tipo="data"></div>'+
     '<div class="field"><label>CPF</label><input type="text" name="'+p+'_cpf"></div></div>'+
     '<div class="field-grid g2"><div class="field"><label>G\xeanero</label><input type="text" name="'+p+'_genero"></div><div class="field"><label>Ra\xe7a</label><input type="text" name="'+p+'_raca"></div></div>'+
     '<div class="field-grid g2"><div class="field"><label>CID</label><textarea name="'+p+'_cid" rows="2"></textarea></div><div class="field"><label>Medicamentos</label><textarea name="'+p+'_med" rows="2"></textarea></div></div>'+
@@ -426,7 +441,7 @@ function blockPSR(p){
     '<div class="card-body"><div class="field-grid g-auto">'+
     '<div class="field"><label>Nome Social</label><input type="text" name="'+p+'_nome_social"></div>'+
     '<div class="field"><label>Nome</label><input type="text" name="'+p+'_nome"></div>'+
-    '<div class="field"><label>Data de Nascimento</label><input type="date" name="'+p+'_dn"></div>'+
+    '<div class="field"><label>Data de Nascimento</label><input type="text" name="'+p+'_dn" placeholder="dd/mm/aaaa" data-tipo="data"></div>'+
     '<div class="field"><label>CPF</label><input type="text" name="'+p+'_cpf"></div></div>'+
     '<div class="field-grid g3">'+
     '<div class="field"><label>G\xeanero</label><input type="text" name="'+p+'_genero"></div>'+
@@ -460,7 +475,7 @@ function blockLGBT(p){
     '<div class="card-body"><div class="field-grid g-auto">'+
     '<div class="field"><label>Nome Social</label><input type="text" name="'+p+'_nome_social"></div>'+
     '<div class="field"><label>Nome</label><input type="text" name="'+p+'_nome"></div>'+
-    '<div class="field"><label>Data de Nascimento</label><input type="date" name="'+p+'_dn"></div>'+
+    '<div class="field"><label>Data de Nascimento</label><input type="text" name="'+p+'_dn" placeholder="dd/mm/aaaa" data-tipo="data"></div>'+
     '<div class="field"><label>CPF</label><input type="text" name="'+p+'_cpf"></div></div>'+
     '<div class="field-grid g3">'+
     '<div class="field"><label>G\xeanero</label><input type="text" name="'+p+'_genero"></div>'+
@@ -482,7 +497,7 @@ function blockRacismo(p){
     '<div class="card-body"><div class="field-grid g-auto">'+
     '<div class="field"><label>Nome Social</label><input type="text" name="'+p+'_nome_social"></div>'+
     '<div class="field"><label>Nome</label><input type="text" name="'+p+'_nome"></div>'+
-    '<div class="field"><label>Data de Nascimento</label><input type="date" name="'+p+'_dn"></div>'+
+    '<div class="field"><label>Data de Nascimento</label><input type="text" name="'+p+'_dn" placeholder="dd/mm/aaaa" data-tipo="data"></div>'+
     '<div class="field"><label>CPF</label><input type="text" name="'+p+'_cpf"></div></div>'+
     '<div class="field-grid g3">'+
     '<div class="field"><label>G\xeanero</label><input type="text" name="'+p+'_genero"></div>'+
@@ -527,6 +542,7 @@ function addVictim(){
     '<option value="">Selecione o segmento...</option>'+opcs+'</select></div>'+
     '<div class="tipos-container">'+Object.keys(BLOCOS).map(function(k){return BLOCOS[k](p);}).join('')+'</div></div>';
   document.getElementById('victimsContainer').appendChild(div);
+  ativarMascarasDatas(div);
 }
 
 function trocarTipo(sel,p){
@@ -585,7 +601,7 @@ function novaPagina(){
   document.getElementById('creasForm').reset();
   document.getElementById('victimsContainer').innerHTML='';
   victimCount=0; addVictim();
-  (function(){var h=new Date(),dd=String(h.getDate()).padStart(2,'0'),mm=String(h.getMonth()+1).padStart(2,'0'),yyyy=h.getFullYear();var el=document.getElementById('dataHoje');if(el)el.value=yyyy+'-'+mm+'-'+dd;})();
+  (function(){var h=new Date(),dd=String(h.getDate()).padStart(2,'0'),mm=String(h.getMonth()+1).padStart(2,'0'),yyyy=h.getFullYear();var el=document.getElementById('dataHoje');if(el)el.value=dd+'/'+mm+'/'+yyyy;ativarMascarasDatas(document);})();
   window.scrollTo(0,0);
 }
 
